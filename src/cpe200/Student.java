@@ -2,15 +2,27 @@ package cpe200;
 
 public class Student {
 
-    private
-    String name ;
-    String id ;
-    int yob;
-    boolean status ;
+
+    private String name ;
+    private  String id ;
+    private  int yob;
+    private   boolean status ;
     public Student() {
         name = "John Doe";
         id = "560610000";
         yob = 1990;
+        status = false;
+    }
+    public Student(String name2 , String id2) {
+        name = name2==""?"John Doe":name2;
+        id = isValidStudent_id(id2)?id2:"560610000";
+        yob = 1990;
+        status = false;
+    }
+    public Student(String name2 , String id2 , int yob2) {
+        name = name2==""?"John Doe":name2;
+        id = isValidStudent_id(id2)?id2:"560610000";
+        yob = isValidYOB(yob2)?yob2:1990;
         status = false;
     }
 
@@ -21,6 +33,8 @@ public class Student {
         yob = isValidYOB(yob2)?yob2:1990;
         status = status2;
     }
+
+
     public String getName(){
         return name;
     }
@@ -36,9 +50,7 @@ public class Student {
     public void setName(String name2){
        name = name2!=""?name2:name;
     }
-    public void setStudent_id(String id2){
-        id = isValidStudent_id(id2)?id2:id;
-    }
+    public void setStudent_id(String id2){id = isValidStudent_id(id2)?id2:id;}
     public void setYearOfBirth(int yob2){
         yob = isValidYOB(yob2)?yob2:yob;
     }
@@ -49,8 +61,7 @@ public class Student {
     }
 
     private boolean isValidStudent_id(String id) {
-        String patt = "5[6-9]{1}061[0-2]{1}[0-9]{3}";
-        return id.matches(patt) ? true : false;
+        return id.matches("5[6-9]{1}061[0-2]{1}[0-9]{3}") ? true : false;
     }
 
     private boolean isValidYOB(int yob) {
